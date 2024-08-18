@@ -6,9 +6,8 @@ public class ProgressHandler : MonoBehaviour
 {
     [SerializeField] private OrderList orderList;
     [Header("Wave Settings")]
-    [SerializeField][Min(1f)] private float waveDuration = 60f;
-    [SerializeField][Min(1f)] private float baseOrderInterval = 20f;
-    [SerializeField][Min(0f)] private int startOrderCount = 2;
+    [SerializeField][Min(1f)] private int startOrderCount = 2;
+    [SerializeField][Min(1f)] private float waveDuration = 60f, baseOrderInterval = 20f, baseOrderTimeLimit = 30f;
     [SerializeField][Range(0f, 1f)] private float speedUpScale = 0.95f;
     [SerializeField] private bool cancelRemainingOrdersOnWaveEnd;
     [Header("Events")]
@@ -17,11 +16,12 @@ public class ProgressHandler : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool logEvents;
 
-    private float waveStartTime, waveEndTime, lastOrderTime;
+    private float elapsedWaveTime, elapsedOrderTime;
     private int clearedWaveCount;
 
     public float OrderInterval => Mathf.Pow(speedUpScale, clearedWaveCount) * baseOrderInterval;
-    public float RemainingWaveTime => Mathf.Clamp(waveEndTime - Time.time, 0f, waveDuration);
+    public float OrderTimeLimit => Mathf.Pow(speedUpScale, clearedWaveCount) * baseOrderTimeLimit;
+    public float RemainingWaveTime => Mathf.Clamp(waveDuration - elapsedWaveTime, 0f, waveDuration);
     public int Wave => clearedWaveCount + 1;
 
     private void Awake()
@@ -34,11 +34,17 @@ public class ProgressHandler : MonoBehaviour
             OnWaveEnd.AddListener(() => Debug.Log(nameof(OnWaveEnd)));
         }
 
-        waveStartTime = Time.time;
-        waveEndTime = waveStartTime + waveDuration;
-        lastOrderTime = waveStartTime - OrderInterval;
+        for (int i = 0; i < startOrderCount; i++) orderList.GenerateOrder(OrderTimeLimit);
+    }
 
-        for (int i = 0; i < startOrderCount; i++) orderList.GenerateOrder(OrderInterval);
+    private void OnEnable()
+    {
+        orderList.ResumeOrders();
+    }
+
+    private void OnDisable()
+    {
+        if (orderList) orderList.PauseOrders();
     }
 
     private void Start()
@@ -49,36 +55,41 @@ public class ProgressHandler : MonoBehaviour
     private void Update()
     {
         CheckForWaveStart();
-        CheckForWaveEnd();
+
+        elapsedWaveTime += Time.deltaTime;
+        elapsedOrderTime += Time.deltaTime;
 
         CheckForNewOrder();
+
+        CheckForWaveEnd();
     }
 
     private void CheckForWaveStart()
     {
-        if (waveStartTime < waveEndTime) return;
+        if (elapsedWaveTime != 0f) return;
 
-        waveEndTime = waveStartTime + waveDuration;
-
+        orderList.ResumeOrders();
         OnWaveStart.Invoke();
     }
 
     private void CheckForWaveEnd()
     {
-        if (Time.time < waveEndTime) return;
+        if (elapsedWaveTime < waveDuration) return;
 
-        waveStartTime = Time.time;
+        elapsedWaveTime = 0;
+        elapsedOrderTime = 0f;
         clearedWaveCount++;
 
         if (cancelRemainingOrdersOnWaveEnd) orderList.CancelOrders();
+        orderList.PauseOrders();
         OnWaveEnd.Invoke();
     }
 
     private void CheckForNewOrder()
     {
-        if (Time.time <= lastOrderTime + OrderInterval || RemainingWaveTime < OrderInterval) return;
+        if (elapsedOrderTime < OrderInterval) return;
 
-        orderList.GenerateOrder(OrderInterval);
-        lastOrderTime = Time.time;
+        orderList.GenerateOrder(OrderTimeLimit);
+        elapsedOrderTime = 0f;
     }
 }

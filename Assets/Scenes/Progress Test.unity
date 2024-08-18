@@ -997,10 +997,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderList: {fileID: 1143951469}
-  waveDuration: 65
+  startOrderCount: 2
+  waveDuration: 60
   baseOrderInterval: 20
-  startOrderCount: 1
+  baseOrderTimeLimit: 30
   speedUpScale: 0.95
+  cancelRemainingOrdersOnWaveEnd: 1
   OnWaveStart:
     m_PersistentCalls:
       m_Calls: []

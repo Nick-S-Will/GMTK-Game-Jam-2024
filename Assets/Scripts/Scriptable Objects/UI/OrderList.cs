@@ -20,6 +20,7 @@ public class OrderList : DisplayMaker<Order, Pet>
         CancelExpiredOrders();
     }
 
+    #region Add Orders
     [ContextMenu("Generate Order")]
     private void GenerateOrder()
     {
@@ -27,16 +28,29 @@ public class OrderList : DisplayMaker<Order, Pet>
         else Debug.LogWarning($"Can't call {nameof(GenerateOrder)}() outside play mode");
     }
 
-
     public void GenerateOrder(float timeLimit = 0f)
     {
         var pet = pets[UnityEngine.Random.Range(0, pets.Length)];
         var order = MakeDisplay(pet);
-        if (timeLimit > 0f) order.MaxCompletionTime = timeLimit;
+        if (timeLimit > 0f) order.TimeLimit = timeLimit;
 
         OnNewOrder.Invoke();
     }
+    #endregion
 
+    #region Pause
+    public void PauseOrders() => SetOrdersPaused(true);
+
+    public void ResumeOrders() => SetOrdersPaused(false);
+
+    public void SetOrdersPaused(bool paused)
+    {
+        displayInstances.RemoveAll(order => order == null);
+        foreach (var order in displayInstances) order.enabled = !paused;
+    }
+    #endregion
+
+    #region Cancel Orders
     private void CancelExpiredOrders() => CancelOrders(order => order.RemainingTime == 0f);
 
     public void CancelOrders() => CancelOrders(order => true);
@@ -51,4 +65,5 @@ public class OrderList : DisplayMaker<Order, Pet>
             OnOrderExpire.Invoke();
         }
     }
+    #endregion
 }

@@ -7,21 +7,17 @@ public class Order : MultiDisplay<Pet, PetIngredientDisplay, PetFoodDisplay>
     [SerializeField] private Slider remainingTimeDisplay;
     [SerializeField] private Image productDisplay;
     [Header("Base Values")]
-    [SerializeField][Min(.1f)] private float baseCompletionTime = 30f;
+    [SerializeField][Min(.1f)] private float baseTimeLimit = 30f;
 
-    private float startTime;
+    private float elapsedTime;
 
-    public float MaxCompletionTime { get => baseCompletionTime; set => baseCompletionTime = value; }
-    public float RemainingTime => Mathf.Max(0f, startTime + MaxCompletionTime - Time.time);
-    public float RemainingTimePercent => Mathf.Clamp01(RemainingTime / MaxCompletionTime);
-
-    private void Awake()
-    {
-        startTime = Time.time;
-    }
+    public float TimeLimit { get => baseTimeLimit; set => baseTimeLimit = value; }
+    public float RemainingTime => Mathf.Max(0f, TimeLimit - elapsedTime);
+    public float RemainingTimePercent => Mathf.Clamp01(RemainingTime / TimeLimit);
 
     private void Update()
     {
+        elapsedTime += Time.deltaTime;
         remainingTimeDisplay.value = RemainingTimePercent;
     }
 
