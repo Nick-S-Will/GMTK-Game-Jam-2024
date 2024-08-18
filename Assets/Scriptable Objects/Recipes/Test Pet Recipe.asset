@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56f840aaa8f0b547ac7a06bb5ce1990, type: 3}
+  m_Name: Test Pet Recipe
+  m_EditorClassIdentifier: 
+  ingredients:
+  - {fileID: 11400000, guid: d51b44ede403e564588ad40bf8d00bbd, type: 2}
+  - {fileID: 11400000, guid: dc6fd2025616c1241a1b4f04171a46dc, type: 2}
+  process: 2
+  product: {fileID: 11400000, guid: 15fe3df3c549d7f45a963fb9829a29f6, type: 2}

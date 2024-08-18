@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caa59c2920ca38542b91c35ecbdda7b7, type: 3}
-  m_Name: New Product
+  m_Name: Test Ingredient 1
   m_EditorClassIdentifier: 
-  sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 2f013d1935402024a98a59d2bb2e40a4, type: 3}
