@@ -12,6 +12,7 @@ public class DropDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private RectTransform ingredientTransform;
     private CanvasGroup canvasGroup;
 
+
     private Vector2 startingPosition; 
     private Vector2 machinePosition; 
 
@@ -57,14 +58,15 @@ public class DropDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
         //basically, if it's not in the spot it should be... put it back in starting position
             //todo: Vector2.zero change to the machine spot later
-        if(ingredientTransform.anchoredPosition != machinePosition){
-            Debug.Log(machinePosition);
-            ingredientTransform.anchoredPosition = startingPosition;
-        }
+            
+        // if(ingredientTransform.anchoredPosition != machinePosition){
+        //     Debug.Log(machinePosition);
+        //     ingredientTransform.anchoredPosition = startingPosition;
+        // }
 
-        else{
-            ingredientTransform.anchoredPosition = machinePosition;
-        }
+        // else{
+        //     ingredientTransform.anchoredPosition = machinePosition;
+        // }
 
         canvasGroup.alpha = 1.0f;
         canvasGroup.blocksRaycasts = true;

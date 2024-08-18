@@ -1,27 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 //has all functions of machine here, from processing to the drop and drag functionality
-public class MachineManager : MonoBehaviour
+public class MachineManager : MonoBehaviour, IDropHandler
 {
-    BaseMachineState currentState;
+#region Variables
+    private Vector2 machinePosition;
+    [Tooltip("Canvas that the ingredients are placed on")][SerializeField] private Canvas canvas;
 
-    #region Available States
-    MachineBox machineBox = new MachineBox(); //already instatiated via monobehavior impl. in MachineBox 
-    //todo: make slots state, processing abstract state -- which will depend on the enum type of the machine.
-    #endregion
+#endregion
 
-    // Start is called before the first frame update
-    void Start()
+void Start(){
+    machinePosition = GetComponent<RectTransform>().transform.position;
+}
+
+#region Slot 
+    public void OnDrop(PointerEventData eventData)
     {
-      currentState = machineBox; //causes the box to be awaiting the drop and drag mechanism
-      currentState.EnterState(this);
+        Debug.Log("OnDrop called"+ machinePosition);
+
+        if(eventData.pointerDrag != null){
+            eventData.pointerDrag.GetComponent<RectTransform>().transform.position = (machinePosition);
+            Debug.Log("Item recieved!" + eventData.pointerDrag.GetComponent<RectTransform>().transform.position);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //todo: change current state based on what is occuring in game
-    }
+#endregion
 }
