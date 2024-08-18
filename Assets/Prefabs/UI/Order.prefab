@@ -753,7 +753,7 @@ MonoBehaviour:
   display2: {fileID: 8680723663467076519}
   remainingTimeDisplay: {fileID: 3237792754622761823}
   productDisplay: {fileID: 6371300389030313834}
-  baseCompletionTime: 30
+  baseCompletionTime: 10
 --- !u!1 &9095187328771666279
 GameObject:
   m_ObjectHideFlags: 0

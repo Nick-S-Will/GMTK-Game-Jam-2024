@@ -12,7 +12,7 @@ public class Order : MultiDisplay<Pet, PetIngredientDisplay, PetFoodDisplay>
     private float startTime;
 
     public float MaxCompletionTime { get => baseCompletionTime; set => baseCompletionTime = value; }
-    public float RemainingTime => startTime + MaxCompletionTime - Time.time;
+    public float RemainingTime => Mathf.Max(0f, startTime + MaxCompletionTime - Time.time);
     public float RemainingTimePercent => Mathf.Clamp01(RemainingTime / MaxCompletionTime);
 
     private void Awake()
