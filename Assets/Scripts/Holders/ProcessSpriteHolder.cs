@@ -3,13 +3,25 @@ using UnityEngine;
 
 public class ProcessSpriteHolder : Holder<ProcessSpriteHolder>
 {
-    [SerializeField] private Sprite[] processSprites;
+    [SerializeField] private ProcessSprite[] processSprites;
 
-    public Sprite this[Process process] => processSprites[(int)process];
+    public Sprite this[Process process] => processSprites[(int)process].sprite;
 
     private void OnValidate()
     {
-        var processCount = Enum.GetValues(typeof(Process)).Length;
-        if (processSprites == null || processSprites.Length != processCount) Array.Resize(ref processSprites, processCount);
+        var processes = Enum.GetNames(typeof(Process));
+        if (processSprites == null || processSprites.Length != processes.Length) Array.Resize(ref processSprites, processes.Length);
+
+        for (int i = 0; i < processSprites.Length; i++)
+        {
+            processSprites[i].name = processes[i];
+        }
+    }
+
+    [Serializable]
+    private struct ProcessSprite
+    {
+        public string name;
+        public Sprite sprite;
     }
 }

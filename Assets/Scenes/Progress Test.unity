@@ -715,6 +715,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Holders
       objectReference: {fileID: 0}
+    - target: {fileID: 9043751287425545294, guid: 306f427428a3f2048a7816487c4505f8, type: 3}
+      propertyPath: processSprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e751ac791e6f9ad42a42f6cd9879738a, type: 3}
+    - target: {fileID: 9043751287425545294, guid: 306f427428a3f2048a7816487c4505f8, type: 3}
+      propertyPath: processSprites.Array.data[1].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15f611cda290fab42b3ac24fedaff78a, type: 3}
+    - target: {fileID: 9043751287425545294, guid: 306f427428a3f2048a7816487c4505f8, type: 3}
+      propertyPath: processSprites.Array.data[2].sprite
+      value: 
+      objectReference: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
