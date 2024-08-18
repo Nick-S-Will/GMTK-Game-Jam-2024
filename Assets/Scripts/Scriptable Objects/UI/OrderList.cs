@@ -27,6 +27,7 @@ public class OrderList : DisplayMaker<Order, Pet>
         else Debug.LogWarning($"Can't call {nameof(GenerateOrder)}() outside play mode");
     }
 
+
     public void GenerateOrder(float timeLimit = 0f)
     {
         var pet = pets[UnityEngine.Random.Range(0, pets.Length)];
@@ -36,11 +37,15 @@ public class OrderList : DisplayMaker<Order, Pet>
         OnNewOrder.Invoke();
     }
 
-    private void CancelExpiredOrders()
+    private void CancelExpiredOrders() => CancelOrders(order => order.RemainingTime == 0f);
+
+    public void CancelOrders() => CancelOrders(order => true);
+
+    public void CancelOrders(Predicate<Order> predicate)
     {
         foreach (var order in Displays)
         {
-            if (order.RemainingTime > 0f) continue;
+            if (!predicate(order)) continue;
 
             DestroyDisplay(order);
             OnOrderExpire.Invoke();

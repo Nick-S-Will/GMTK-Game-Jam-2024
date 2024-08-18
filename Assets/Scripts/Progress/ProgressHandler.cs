@@ -10,6 +10,7 @@ public class ProgressHandler : MonoBehaviour
     [SerializeField][Min(1f)] private float baseOrderInterval = 20f;
     [SerializeField][Min(0f)] private int startOrderCount = 2;
     [SerializeField][Range(0f, 1f)] private float speedUpScale = 0.95f;
+    [SerializeField] private bool cancelRemainingOrdersOnWaveEnd;
     [Header("Events")]
     public UnityEvent OnWaveStart;
     public UnityEvent OnWaveEnd;
@@ -69,6 +70,7 @@ public class ProgressHandler : MonoBehaviour
         waveStartTime = Time.time;
         clearedWaveCount++;
 
+        if (cancelRemainingOrdersOnWaveEnd) orderList.CancelOrders();
         OnWaveEnd.Invoke();
     }
 
