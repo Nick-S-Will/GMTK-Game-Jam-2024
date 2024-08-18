@@ -8,6 +8,7 @@ public class OrderList : DisplayMaker<Order, Pet>
 {
     [SerializeField] private Pet[] pets;
     [Header("Events")]
+    public UnityEvent OnNewOrder;
     public UnityEvent OnOrderExpire;
 
     protected override Comparison<Order> DisplayComparison => new((order1, order2) => (int)(order1.RemainingTime - order2.RemainingTime));
@@ -31,6 +32,8 @@ public class OrderList : DisplayMaker<Order, Pet>
         var pet = pets[UnityEngine.Random.Range(0, pets.Length)];
         var order = MakeDisplay(pet);
         if (timeLimit > 0f) order.MaxCompletionTime = timeLimit;
+
+        OnNewOrder.Invoke();
     }
 
     private void CancelExpiredOrders()
