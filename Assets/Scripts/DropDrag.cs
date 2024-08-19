@@ -28,6 +28,7 @@ public class DropDrag : MonoBehaviour
         Assert.IsNotNull(ingredient);
     }
 
+    #region Mouse Messages
     private void OnMouseDown()
     {
         SetAlpha(dragAlpha);
@@ -38,7 +39,7 @@ public class DropDrag : MonoBehaviour
         var hitInfo = Physics2D.Raycast(MouseWorldPosition, Vector2.zero);
         var machine = hitInfo.collider ? hitInfo.collider.GetComponent<MachineManager>() : null;
 
-        if (machine) machine.PlaceIngredient(ingredient);
+        if (machine) _ = machine.TryPlaceIngredient(ingredient);
         spriteRenderer.transform.position = transform.position;
 
         SetAlpha(1f);
@@ -48,6 +49,7 @@ public class DropDrag : MonoBehaviour
     {
         spriteRenderer.transform.position = MouseWorldPosition;
     }
+    #endregion
 
     private void SetAlpha(float alpha)
     {
@@ -56,8 +58,10 @@ public class DropDrag : MonoBehaviour
         spriteRenderer.color = color;
     }
 
+    #region Debug
     private void OnValidate()
     {
         if (spriteRenderer && ingredient) spriteRenderer.sprite = ingredient.sprite;
     }
+    #endregion
 }
