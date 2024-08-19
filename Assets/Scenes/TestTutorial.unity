@@ -363,13 +363,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1eda21b229ff48b889e30fcac1fec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quota: 0
+  quota: 5
   score: 0
-  exceedingFactor: 0
-  timeBonus: 0
+  exceedingFactor: 5
+  timeBonus: 60
   OnAdopted:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 260462136}
+        m_TargetAssemblyTypeName: ScoreHandler, Assembly-CSharp
+        m_MethodName: AddScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  logEvents: 0
 --- !u!4 &260462137
 Transform:
   m_ObjectHideFlags: 0
@@ -780,8 +793,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressHandler: {fileID: 1479451758}
+  scoreHandler: {fileID: 260462136}
   waveText: {fileID: 1488170194}
   timeText: {fileID: 1467757077}
+  scoreText: {fileID: 1140450088}
 --- !u!114 &727977444 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4548633295640043217, guid: 897fa61b61e7edb46970f198d9427072, type: 3}
@@ -1218,13 +1233,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260462135}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 260462136}
+        m_TargetAssemblyTypeName: ScoreHandler, Assembly-CSharp
+        m_MethodName: OnAdoptedInvoked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -95,4 +95,15 @@ public class ProgressHandler : MonoBehaviour
         elapsedOrderTime = 0f;
     }
 
+    #region ScoreHandler Access Methods
+    public void AddTime(float addBonus){
+        Debug.Log("AddTime called");
+
+        if(addBonus > 0){
+            waveDuration += addBonus;
+        }
+    }
+
+    #endregion
+
 }
