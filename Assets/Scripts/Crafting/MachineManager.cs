@@ -4,12 +4,12 @@ using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
-public class MachineManager : MonoBehaviour
+public class MachineManager : MonoBehaviour, IDropPoint<Ingredient>
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Process machineProcess;
     [SerializeField] private SpriteRenderer[] ingredientRenderers;
-    [SerializeField] private DropDrag productDisplay;
+    [SerializeField] private IngredientDragDrop productDisplay;
     [Space]
     [SerializeField][Min(0f)] private float processingTime = 1f;
     [Header("Events")]
@@ -68,11 +68,11 @@ public class MachineManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        _ = TryRemoveIngredient();
+        _ = TryRemove();
     }
 
     #region Add/Remove Ingredient
-    public bool TryPlaceIngredient(Ingredient ingredient)
+    public bool TryPlace(Ingredient ingredient)
     {
         if (ingredientRenderers.Length == ingredientIndex || IsProcessing) return false;
 
@@ -84,7 +84,7 @@ public class MachineManager : MonoBehaviour
         return true;
     }
 
-    public Ingredient TryRemoveIngredient()
+    public Ingredient TryRemove()
     {
         if (ingredientIndex == 0 || IsProcessing) return null;
 

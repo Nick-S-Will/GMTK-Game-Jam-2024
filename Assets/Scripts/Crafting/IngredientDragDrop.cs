@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
-public class DropDrag : MonoBehaviour
+public class IngredientDragDrop : MonoBehaviour, IDragDroppable<Ingredient>
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Ingredient ingredient;
@@ -28,9 +28,18 @@ public class DropDrag : MonoBehaviour
             return mouseWorldPosition;
         }
     }
+    private float Alpha
+    {
+        set
+        {
+            var color = spriteRenderer.color;
+            color.a = Mathf.Clamp01(value);
+            spriteRenderer.color = color;
+        }
+    }
 
-    public Ingredient Ingredient 
-    { 
+    public Ingredient Ingredient
+    {
         get => ingredient;
         set
         {
@@ -57,7 +66,7 @@ public class DropDrag : MonoBehaviour
     {
         if (Ingredient == null) return;
 
-        SetAlpha(dragAlpha);
+        Alpha = dragAlpha;
 
         OnGrab.Invoke();
     }
@@ -66,10 +75,37 @@ public class DropDrag : MonoBehaviour
     {
         if (Ingredient == null) return;
 
-        var hitInfo = Physics2D.Raycast(MouseWorldPosition, Vector2.zero);
-        var machine = hitInfo.collider ? hitInfo.collider.GetComponent<MachineManager>() : null;
+        Drop(MouseWorldPosition);
 
-        if (machine && machine.TryPlaceIngredient(Ingredient))
+        Alpha = 1f;
+    }
+
+    private void OnMouseDrag()
+    {
+        if (Ingredient == null) return;
+
+        Drag(MouseWorldPosition);
+    }
+    #endregion
+
+    #region IDragDroppable
+    Ingredient IDragDroppable<Ingredient>.DragObject
+    {
+        get => Ingredient;
+        set => Ingredient = value;
+    }
+
+    public void Drag(Vector2 position)
+    {
+        spriteRenderer.transform.position = MouseWorldPosition;
+    }
+
+    public void Drop(Vector2 position)
+    {
+        var hitInfo = Physics2D.Raycast(position, Vector2.zero);
+        var dropPoint = hitInfo.collider ? hitInfo.collider.GetComponent<IDropPoint<Ingredient>>() : null;
+
+        if (dropPoint != null && dropPoint.TryPlace(Ingredient))
         {
             if (singleIngredient) Ingredient = null;
 
@@ -77,24 +113,8 @@ public class DropDrag : MonoBehaviour
         }
         else OnDrop.Invoke();
         spriteRenderer.transform.position = transform.position;
-
-        SetAlpha(1f);
-    }
-
-    private void OnMouseDrag()
-    {
-        if (Ingredient == null) return;
-
-        spriteRenderer.transform.position = MouseWorldPosition;
     }
     #endregion
-
-    private void SetAlpha(float alpha)
-    {
-        var color = spriteRenderer.color;
-        color.a = Mathf.Clamp01(alpha);
-        spriteRenderer.color = color;
-    }
 
     #region Debug
     private void OnValidate()
