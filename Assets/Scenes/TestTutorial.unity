@@ -363,17 +363,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1eda21b229ff48b889e30fcac1fec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  progressHandler: {fileID: 1479451758}
   quota: 5
   score: 0
   exceedingFactor: 5
   timeBonus: 60
   OnAdopted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 260462136}
-        m_TargetAssemblyTypeName: ScoreHandler, Assembly-CSharp
-        m_MethodName: AddScore
-        m_Mode: 1
       m_Calls: []
   logEvents: 0
 --- !u!4 &260462137
