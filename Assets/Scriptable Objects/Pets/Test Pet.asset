@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef7791c79daa2c4d88da37a3401bae6, type: 3}
   m_Name: Test Pet
   m_EditorClassIdentifier: 
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 05be1a0bfdf032a44b2f911778e5c403, type: 3}
   foods:
   - {fileID: 11400000, guid: 53bdb8c6ae5ae1e4db8ff2ce937fb931, type: 2}

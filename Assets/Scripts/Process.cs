@@ -2,4 +2,4 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Process { Mortar, Boil, Etc }
+public enum Process { Beaker, Boil, Creator }
