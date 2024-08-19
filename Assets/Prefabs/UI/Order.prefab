@@ -110,8 +110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 25}
+  m_AnchoredPosition: {x: 0, y: -5.0810013}
+  m_SizeDelta: {x: -21.6865, y: 25}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &3237792754622761823
 MonoBehaviour:
@@ -198,7 +198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -30.081001}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1916771089385707806
@@ -237,7 +237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -85}
+  m_AnchoredPosition: {x: 0, y: -92}
   m_SizeDelta: {x: 0, y: -134.838}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &9132441789885226892
@@ -753,7 +753,7 @@ MonoBehaviour:
   display2: {fileID: 8680723663467076519}
   remainingTimeDisplay: {fileID: 3237792754622761823}
   productDisplay: {fileID: 6371300389030313834}
-  baseCompletionTime: 10
+  baseTimeLimit: 30
 --- !u!1 &9095187328771666279
 GameObject:
   m_ObjectHideFlags: 0
