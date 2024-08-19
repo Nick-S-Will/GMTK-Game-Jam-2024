@@ -61,6 +61,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   processSprites:
-  - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  - name: Beaker
+    sprite: {fileID: 21300000, guid: e751ac791e6f9ad42a42f6cd9879738a, type: 3}
+  - name: Boil
+    sprite: {fileID: 21300000, guid: 7b553ba7133dfd8439f6d1d8ee3b292d, type: 3}
+  - name: Creator
+    sprite: {fileID: 21300000, guid: 0abb9904521c94841bdfa75312db7326, type: 3}
