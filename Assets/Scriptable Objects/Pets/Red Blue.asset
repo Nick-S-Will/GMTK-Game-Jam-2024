@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef7791c79daa2c4d88da37a3401bae6, type: 3}
   m_Name: Red Blue
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 4c114e6b8fefb06488539a246b310536, type: 3}
+  sprite: {fileID: 21300000, guid: f2081b24c2dc7874596f2fe42e99e09a, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}
   foods: []
