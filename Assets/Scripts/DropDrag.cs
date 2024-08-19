@@ -9,6 +9,7 @@ public class DropDrag : MonoBehaviour
     [SerializeField] private Ingredient ingredient;
     [Space]
     [SerializeField][Range(0f, 1f)] private float dragAlpha = .5f;
+    [SerializeField] private bool singleIngredient;
 
     private Vector2 MouseWorldPosition
     {
@@ -22,24 +23,37 @@ public class DropDrag : MonoBehaviour
         }
     }
 
+    public Ingredient Ingredient 
+    { 
+        get => ingredient;
+        set
+        {
+            ingredient = value;
+            spriteRenderer.sprite = ingredient ? ingredient.sprite : null;
+        }
+    }
+
     private void Awake()
     {
         Assert.IsNotNull(spriteRenderer);
-        Assert.IsNotNull(ingredient);
     }
 
     #region Mouse Messages
     private void OnMouseDown()
     {
+        if (Ingredient == null) return;
+
         SetAlpha(dragAlpha);
     }
 
     private void OnMouseUp()
     {
+        if (Ingredient == null) return;
+
         var hitInfo = Physics2D.Raycast(MouseWorldPosition, Vector2.zero);
         var machine = hitInfo.collider ? hitInfo.collider.GetComponent<MachineManager>() : null;
 
-        if (machine) _ = machine.TryPlaceIngredient(ingredient);
+        if (machine && machine.TryPlaceIngredient(Ingredient) && singleIngredient) Ingredient = null;
         spriteRenderer.transform.position = transform.position;
 
         SetAlpha(1f);
@@ -47,6 +61,8 @@ public class DropDrag : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (Ingredient == null) return;
+
         spriteRenderer.transform.position = MouseWorldPosition;
     }
     #endregion
@@ -61,7 +77,7 @@ public class DropDrag : MonoBehaviour
     #region Debug
     private void OnValidate()
     {
-        if (spriteRenderer && ingredient) spriteRenderer.sprite = ingredient.sprite;
+        if (spriteRenderer) spriteRenderer.sprite = Ingredient ? Ingredient.sprite : null;
     }
     #endregion
 }
