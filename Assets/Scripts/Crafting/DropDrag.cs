@@ -34,8 +34,9 @@ public class DropDrag : MonoBehaviour
         get => ingredient;
         set
         {
+            spriteRenderer.sprite = value ? value.sprite : null;
+            spriteRenderer.color = value ? value.tint : Color.white;
             ingredient = value;
-            spriteRenderer.sprite = ingredient ? ingredient.sprite : null;
         }
     }
 

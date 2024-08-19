@@ -28,6 +28,7 @@ public class MachineManager : MonoBehaviour
         set
         {
             ingredientRenderers[ingredientIndex].sprite = value ? value.sprite : null;
+            ingredientRenderers[ingredientIndex].color = value ? value.tint : Color.white;
             ingredients[ingredientIndex] = value;
         }
     }

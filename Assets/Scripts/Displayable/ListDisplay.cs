@@ -1,16 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UI;
 
 namespace Displayable
 {
-    public abstract class ListDisplay<ObjectType, ListType, PrefabType> : Display<ObjectType> where ObjectType : class, IListDisplayable<ListType> where PrefabType : MonoBehaviour
+    public abstract class ListDisplay<ObjectType, ListType, GraphicType> : Display<ObjectType> where ObjectType : class, IListDisplayable<ListType> where GraphicType : MonoBehaviour
     {
         [SerializeField] private RectTransform graphicParent;
-        [SerializeField] private PrefabType graphicPrefab;
+        [SerializeField] private GraphicType graphicPrefab;
 
-        protected readonly List<PrefabType> graphicInstances = new();
+        protected readonly List<GraphicType> graphicInstances = new();
 
         protected virtual void Awake()
         {

@@ -4,4 +4,5 @@ using UnityEngine;
 public class Ingredient : ScriptableObject
 {
     public Sprite sprite;
+    public Color tint = Color.white;
 }
