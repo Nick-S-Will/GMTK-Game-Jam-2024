@@ -24,6 +24,8 @@ public class ProgressHandler : MonoBehaviour
     public float RemainingWaveTime => Mathf.Clamp(waveDuration - elapsedWaveTime, 0f, waveDuration);
     public int Wave => clearedWaveCount + 1;
 
+    public string StringWaveDuration => waveDuration.ToString();
+
     private void Awake()
     {
         Assert.IsNotNull(orderList);
@@ -103,7 +105,6 @@ public class ProgressHandler : MonoBehaviour
             waveDuration += addBonus;
         }
     }
-
     #endregion
 
 }

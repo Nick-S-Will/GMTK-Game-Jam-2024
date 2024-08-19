@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class ScoreHandler : MonoBehaviour
 {
-
     [SerializeField] private ProgressHandler progressHandler; //ref to add time
 
     [Header("Victory Conditions")]
@@ -18,6 +17,11 @@ public class ScoreHandler : MonoBehaviour
     [Tooltip("How much score must exceed for time bonus")][SerializeField] private int exceedingFactor = 5;
     [Tooltip("Additional Time added")] [SerializeField] private float timeBonus = 60f;
 
+    //booleans Used for failure conditions
+
+    //only serialize field for debug purposes rn; else switch via code
+    [SerializeField] public bool arcadeGameMode {get; private set;}
+    public bool losingViaTime {get; private set;}
 
     [Header("Events")]
     [Tooltip("Called offscreen; updates score")] public UnityEvent OnAdopted; 
@@ -26,14 +30,18 @@ public class ScoreHandler : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool logEvents;
 
+    
+
     void Awake(){
         
         Assert.IsNotNull(progressHandler);
 
-
         if (logEvents){
             OnAdopted.AddListener(() => Debug.Log(nameof(OnAdoptedCalled)));
         }
+
+        arcadeGameMode = false;
+        losingViaTime = false;
 
     }
     void Update()
@@ -65,15 +73,11 @@ public class ScoreHandler : MonoBehaviour
     }
     #endregion
 
-
     private void AddTimeBonus(){
         progressHandler.AddTime(timeBonus);
 
         //for the Update()
         lastBonusScore = score;
     }
-
-
-
 
 }
