@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56f840aaa8f0b547ac7a06bb5ce1990, type: 3}
+  m_Name: Boiled Blue Recipe
+  m_EditorClassIdentifier: 
+  ingredients:
+  - {fileID: 11400000, guid: 313328f950e06504db2be979de1e3c52, type: 2}
+  process: 1
+  product: {fileID: 11400000, guid: 7975700890b78da47902ea7cf14cd83b, type: 2}
