@@ -3,37 +3,23 @@ using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
-public class IngredientDragDrop : MonoBehaviour, IDragDroppable<Ingredient>
+public class FoodDragDrop : MonoBehaviour, IDragDroppable<Food>
 {
-    [SerializeField] private Ingredient ingredient;
+    [SerializeField] private Food food;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [Space]
-    [SerializeField][Range(0f, 1f)] private float dragAlpha = .5f;
-    [SerializeField] private bool singleIngredient;
     [Header("Events")]
     public UnityEvent OnGrab;
     public UnityEvent OnDrop, OnPlace;
     [Header("Debug")]
     [SerializeField] private bool logEvents;
 
-    private float Alpha
+    public Food Food
     {
-        set
-        {
-            var color = spriteRenderer.color;
-            color.a = Mathf.Clamp01(value);
-            spriteRenderer.color = color;
-        }
-    }
-
-    public Ingredient Ingredient
-    {
-        get => ingredient;
+        get => food;
         set
         {
             spriteRenderer.sprite = value ? value.sprite : null;
-            spriteRenderer.color = value ? value.tint : Color.white;
-            ingredient = value;
+            food = value;
         }
     }
 
@@ -52,49 +38,41 @@ public class IngredientDragDrop : MonoBehaviour, IDragDroppable<Ingredient>
     #region Mouse Messages
     private void OnMouseDown()
     {
-        if (Ingredient == null) return;
-
-        Alpha = dragAlpha;
+        if (Food == null) return;
 
         OnGrab.Invoke();
     }
 
     private void OnMouseUp()
     {
-        if (Ingredient == null) return;
+        if (Food == null) return;
 
         Drop(IDragDroppable<Ingredient>.MouseWorldPosition);
-
-        Alpha = 1f;
     }
 
     private void OnMouseDrag()
     {
-        if (Ingredient == null) return;
+        if (Food == null) return;
 
         Drag(IDragDroppable<Ingredient>.MouseWorldPosition);
     }
     #endregion
 
     #region IDragDroppable
-    Ingredient IDragDroppable<Ingredient>.ObjectReference
+    Food IDragDroppable<Food>.ObjectReference
     {
-        get => Ingredient;
-        set => Ingredient = value;
+        get => Food;
+        set => Food = value;
     }
 
     public void Drag(Vector2 position)
     {
-        spriteRenderer.transform.position = IDragDroppable<Ingredient>.MouseWorldPosition;
+        spriteRenderer.transform.position = IDragDroppable<Food>.MouseWorldPosition;
     }
 
     public void Drop(Vector2 position)
     {
-        if ((this as IDragDroppable<Ingredient>).TryPlaceAtDropPoint(position)) {
-            if (singleIngredient) Ingredient = null;
-
-            OnPlace.Invoke();
-        }
+        if ((this as IDragDroppable<Food>).TryPlaceAtDropPoint(position)) OnPlace.Invoke();
         else OnDrop.Invoke();
 
         spriteRenderer.transform.position = transform.position;
@@ -104,7 +82,7 @@ public class IngredientDragDrop : MonoBehaviour, IDragDroppable<Ingredient>
     #region Debug
     private void OnValidate()
     {
-        if (spriteRenderer) spriteRenderer.sprite = Ingredient ? Ingredient.sprite : null;
+        if (spriteRenderer) spriteRenderer.sprite = Food ? Food.sprite : null;
     }
     #endregion
 }
