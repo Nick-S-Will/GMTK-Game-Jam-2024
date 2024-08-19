@@ -1,85 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 
-    //Based on: https://www.youtube.com/watch?v=BGr-7GZJNXg
-public class DropDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+[RequireComponent(typeof(Collider2D))]
+public class DropDrag : MonoBehaviour
 {
-    //variables
-    [Tooltip("Canvas that the ingredients are placed on")][SerializeField] private Canvas canvas;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Ingredient ingredient;
+    [Space]
+    [SerializeField][Range(0f, 1f)] private float dragAlpha = .5f;
 
-    private RectTransform ingredientTransform;
-    private CanvasGroup canvasGroup;
+    private Vector2 MouseWorldPosition
+    {
+        get
+        {
+            var mouseScreenPosition = Mouse.current.position.ReadValue();
+            var mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+            mouseWorldPosition.z = transform.position.z;
 
-
-    private Vector2 startingPosition; 
-    private Vector2 machinePosition; 
-
-
-    // private Vector2 machinePosition = Vector2.zero; //temp until i get the machine going
-    [Tooltip("The machine the ingredient is connected to")][SerializeField] private GameObject useableMachine; //temp until i get the machine going
-
-
-    #region Methods
-    void Awake(){
-        ingredientTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
-        startingPosition = ingredientTransform.anchoredPosition;
-    }
-
-    void Start(){
-        if(useableMachine == null){
-            this.enabled = false;
-            Debug.Log("No useable machine connected to ingredient; drag game object into inspector");
+            return mouseWorldPosition;
         }
-
-        else{
-            //get machine's position, if there is a connected machine to the ingredient
-            machinePosition = (useableMachine.GetComponent<RectTransform>()).anchoredPosition;
-        }
-
     }
 
-    
-     public void OnPointerDown(PointerEventData eventData){
-       Debug.Log("PointerDown called");
+    private void Awake()
+    {
+        Assert.IsNotNull(spriteRenderer);
+        Assert.IsNotNull(ingredient);
     }
 
-    public void OnBeginDrag(PointerEventData eventData){
-       Debug.Log("OnBeginDrag called");
-
-       canvasGroup.alpha = 0.5f;
-       canvasGroup.blocksRaycasts = false;
+    private void OnMouseDown()
+    {
+        SetAlpha(dragAlpha);
     }
 
-    public void OnEndDrag(PointerEventData eventData){
-       Debug.Log("OnEndDrag called");
+    private void OnMouseUp()
+    {
+        var hitInfo = Physics2D.Raycast(MouseWorldPosition, Vector2.zero);
+        var machine = hitInfo.collider ? hitInfo.collider.GetComponent<MachineManager>() : null;
 
-        //basically, if it's not in the spot it should be... put it back in starting position
-            //todo: Vector2.zero change to the machine spot later
-            
-        // if(ingredientTransform.anchoredPosition != machinePosition){
-        //     Debug.Log(machinePosition);
-        //     ingredientTransform.anchoredPosition = startingPosition;
-        // }
+        if (machine) machine.PlaceIngredient(ingredient);
+        spriteRenderer.transform.position = transform.position;
 
-        // else{
-        //     ingredientTransform.anchoredPosition = machinePosition;
-        // }
-
-        canvasGroup.alpha = 1.0f;
-        canvasGroup.blocksRaycasts = true;
+        SetAlpha(1f);
     }
 
-    //from drag handler
-    public void OnDrag(PointerEventData eventData){
-        Debug.Log("Dragging");
-
-        ingredientTransform.anchoredPosition += eventData.delta /canvas.scaleFactor;
-
+    private void OnMouseDrag()
+    {
+        spriteRenderer.transform.position = MouseWorldPosition;
     }
-    #endregion
 
+    private void SetAlpha(float alpha)
+    {
+        var color = spriteRenderer.color;
+        color.a = Mathf.Clamp01(alpha);
+        spriteRenderer.color = color;
+    }
 
+    private void OnValidate()
+    {
+        if (spriteRenderer && ingredient) spriteRenderer.sprite = ingredient.sprite;
+    }
 }
