@@ -572,6 +572,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Holders
       objectReference: {fileID: 0}
+    - target: {fileID: 9043751287425545294, guid: 306f427428a3f2048a7816487c4505f8, type: 3}
+      propertyPath: processSprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e751ac791e6f9ad42a42f6cd9879738a, type: 3}
+    - target: {fileID: 9043751287425545294, guid: 306f427428a3f2048a7816487c4505f8, type: 3}
+      propertyPath: processSprites.Array.data[1].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a3375adc658af1442bf7c7e861dbbee5, type: 3}
+    - target: {fileID: 9043751287425545294, guid: 306f427428a3f2048a7816487c4505f8, type: 3}
+      propertyPath: processSprites.Array.data[2].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b2846dc6a2fcab4478fb00cf9a5a4d84, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -891,10 +903,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1285149132}
     m_Modifications:
-    - target: {fileID: 124063018459355735, guid: 59e0355dc2233b24ea4e26bbd586c393, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8185891944773938003, guid: 59e0355dc2233b24ea4e26bbd586c393, type: 3}
       propertyPath: m_Name
       value: Machine
