@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-
 public class GameOverUIScript : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverScreen;
