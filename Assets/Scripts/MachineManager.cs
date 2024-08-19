@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
 public class MachineManager : MonoBehaviour
@@ -11,10 +12,14 @@ public class MachineManager : MonoBehaviour
     [SerializeField] private DropDrag productDisplay;
     [Space]
     [SerializeField][Min(0f)] private float processingTime = 1f;
+    [Header("Events")]
+    public UnityEvent OnPlace;
+    public UnityEvent OnRemove, OnProcess, OnProcessed;
+    [Header("Debug")]
+    [SerializeField] private bool logEvents;
 
     private Ingredient[] ingredients;
     private int ingredientIndex;
-    private Ingredient product;
     private Coroutine processingRoutine;
 
     private Ingredient CurrentIngredient
@@ -29,12 +34,8 @@ public class MachineManager : MonoBehaviour
 
     public Ingredient Product
     {
-        get => product;
-        private set
-        {
-            productDisplay.Ingredient = value;
-            product = value;
-        }
+        get => productDisplay.Ingredient;
+        private set => productDisplay.Ingredient = value;
     }
     public int IngredientSlotCount => ingredientRenderers.Length;
     public bool IsProcessing => processingRoutine != null;
@@ -47,6 +48,14 @@ public class MachineManager : MonoBehaviour
         Assert.IsNotNull(productDisplay);
 
         ingredients = new Ingredient[IngredientSlotCount];
+
+        if (logEvents)
+        {
+            OnPlace.AddListener(() => Debug.Log(nameof(OnPlace)));
+            OnRemove.AddListener(() => Debug.Log(nameof(OnRemove)));
+            OnProcess.AddListener(() => Debug.Log(nameof(OnProcess)));
+            OnProcessed.AddListener(() => Debug.Log(nameof(OnProcessed)));
+        }
     }
 
     private void Start()
@@ -68,6 +77,8 @@ public class MachineManager : MonoBehaviour
         CurrentIngredient = ingredient;
         ingredientIndex++;
 
+        OnPlace.Invoke();
+
         return true;
     }
 
@@ -78,6 +89,8 @@ public class MachineManager : MonoBehaviour
         ingredientIndex--;
         var ingredient = CurrentIngredient;
         CurrentIngredient = null;
+
+        OnRemove.Invoke();
 
         return ingredient;
     }
@@ -97,6 +110,8 @@ public class MachineManager : MonoBehaviour
 
     private IEnumerator ProcessingRoutine(Recipe recipe)
     {
+        OnProcess.Invoke();
+
         var processingInterval = processingTime / recipe.ingredients.Length;
         while (ingredientIndex > 0)
         {
@@ -109,6 +124,8 @@ public class MachineManager : MonoBehaviour
         Product = recipe.product;
 
         processingRoutine = null;
+
+        OnProcessed.Invoke();
     }
     #endregion
 
@@ -118,7 +135,7 @@ public class MachineManager : MonoBehaviour
         if (spriteRenderer)
         {
             var processSprites = FindObjectOfType<ProcessSpriteHolder>();
-            spriteRenderer.sprite = processSprites[machineProcess];
+            spriteRenderer.sprite = processSprites ? processSprites[machineProcess] : null;
         }
     }
     #endregion

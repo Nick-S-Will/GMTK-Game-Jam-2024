@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
@@ -10,6 +11,11 @@ public class DropDrag : MonoBehaviour
     [Space]
     [SerializeField][Range(0f, 1f)] private float dragAlpha = .5f;
     [SerializeField] private bool singleIngredient;
+    [Header("Events")]
+    public UnityEvent OnGrab;
+    public UnityEvent OnDrop, OnPlace;
+    [Header("Debug")]
+    [SerializeField] private bool logEvents;
 
     private Vector2 MouseWorldPosition
     {
@@ -36,6 +42,13 @@ public class DropDrag : MonoBehaviour
     private void Awake()
     {
         Assert.IsNotNull(spriteRenderer);
+
+        if (logEvents)
+        {
+            OnGrab.AddListener(() => Debug.Log(nameof(OnGrab)));
+            OnDrop.AddListener(() => Debug.Log(nameof(OnDrop)));
+            OnPlace.AddListener(() => Debug.Log(nameof(OnPlace)));
+        }
     }
 
     #region Mouse Messages
@@ -44,6 +57,8 @@ public class DropDrag : MonoBehaviour
         if (Ingredient == null) return;
 
         SetAlpha(dragAlpha);
+
+        OnGrab.Invoke();
     }
 
     private void OnMouseUp()
@@ -53,7 +68,13 @@ public class DropDrag : MonoBehaviour
         var hitInfo = Physics2D.Raycast(MouseWorldPosition, Vector2.zero);
         var machine = hitInfo.collider ? hitInfo.collider.GetComponent<MachineManager>() : null;
 
-        if (machine && machine.TryPlaceIngredient(Ingredient) && singleIngredient) Ingredient = null;
+        if (machine && machine.TryPlaceIngredient(Ingredient))
+        {
+            if (singleIngredient) Ingredient = null;
+
+            OnPlace.Invoke();
+        }
+        else OnDrop.Invoke();
         spriteRenderer.transform.position = transform.position;
 
         SetAlpha(1f);
