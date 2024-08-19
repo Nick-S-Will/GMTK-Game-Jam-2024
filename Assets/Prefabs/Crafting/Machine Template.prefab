@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 2479844512756297013}
   - component: {fileID: 124063018459355735}
   m_Layer: 0
-  m_Name: Machine
+  m_Name: Machine Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
