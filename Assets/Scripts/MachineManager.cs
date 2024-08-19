@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
 public class MachineManager : MonoBehaviour
@@ -9,11 +9,15 @@ public class MachineManager : MonoBehaviour
     [SerializeField] private Process machineProcess;
     [SerializeField] private SpriteRenderer[] ingredientRenderers;
     [SerializeField] private SpriteRenderer productRenderer;
+    [Space]
+    [SerializeField][Min(0f)] private float processingTime = 1f;
 
     private Ingredient[] ingredients;
     private int ingredientIndex;
+    private Coroutine processingRoutine;
 
     public int IngredientSlotCount => ingredientRenderers.Length;
+    public bool IsProcessing => processingRoutine != null;
 
     private void Awake()
     {
@@ -38,10 +42,9 @@ public class MachineManager : MonoBehaviour
     #region Add/Remove Ingredient
     public bool TryPlaceIngredient(Ingredient ingredient)
     {
-        if (ingredientRenderers.Length == ingredientIndex) return false;
+        if (ingredientRenderers.Length == ingredientIndex || IsProcessing) return false;
 
-        ingredientRenderers[ingredientIndex].sprite = ingredient.sprite;
-        ingredients[ingredientIndex] = ingredient;
+        SetCurrentIngredient(ingredient);
         ingredientIndex++;
 
         return true;
@@ -49,14 +52,46 @@ public class MachineManager : MonoBehaviour
 
     public Ingredient TryRemoveIngredient()
     {
-        if (ingredientIndex == 0) return null;
+        if (ingredientIndex == 0 || IsProcessing) return null;
 
         ingredientIndex--;
         var ingredient = ingredients[ingredientIndex];
-        ingredients[ingredientIndex] = null;
-        ingredientRenderers[ingredientIndex].sprite = null;
+        SetCurrentIngredient(null);
 
         return ingredient;
+    }
+
+    private void SetCurrentIngredient(Ingredient ingredient)
+    {
+        ingredients[ingredientIndex] = ingredient;
+        ingredientRenderers[ingredientIndex].sprite = ingredient ? ingredient.sprite : null;
+    }
+    #endregion
+
+    #region Processing
+    [ContextMenu("Process Ingredients")]
+    public void TryProcessIngredients()
+    {
+        if (ingredientIndex == 0 || IsProcessing) return;
+
+        var recipe = RecipeHolder.Singleton.GetRecipeFor(ingredients[..ingredientIndex], machineProcess);
+        if (recipe == null) return;
+
+        processingRoutine = StartCoroutine(ProcessingRoutine(recipe));
+    }
+
+    private IEnumerator ProcessingRoutine(Recipe recipe)
+    {
+        var processingInterval = processingTime / recipe.ingredients.Length;
+        while (ingredientIndex > 0)
+        {
+            ingredientIndex--;
+            SetCurrentIngredient(null);
+
+            yield return new WaitForSeconds(processingInterval);
+        }
+
+        productRenderer.sprite = recipe.product.sprite;
     }
     #endregion
 

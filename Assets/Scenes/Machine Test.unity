@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 236345143}
-  ingredient: {fileID: 11400000, guid: d51b44ede403e564588ad40bf8d00bbd, type: 2}
+  ingredient: {fileID: 11400000, guid: b907b9d5c2c230f40ab742066602a707, type: 2}
   dragAlpha: 0.5
 --- !u!61 &1047772031
 BoxCollider2D:
@@ -735,7 +735,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.43, y: 3.76}
-    newSize: {x: 1.75, y: 2.01}
+    newSize: {x: 2.43, y: 3.76}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -760,6 +760,7 @@ MonoBehaviour:
   ingredientRenderers:
   - {fileID: 218492957}
   productRenderer: {fileID: 1912450350}
+  processingTime: 1
 --- !u!212 &1503907869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -806,7 +807,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.75, y: 2.01}
+  m_Size: {x: 2.43, y: 3.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
