@@ -14,7 +14,7 @@ public class MachineManager : MonoBehaviour
     [SerializeField][Min(0f)] private float processingTime = 1f;
     [Header("Events")]
     public UnityEvent OnPlace;
-    public UnityEvent OnRemove, OnProcess, OnProcessed;
+    public UnityEvent OnRemove, OnInvalidRecipe, OnProcess, OnProcessed;
     [Header("Debug")]
     [SerializeField] private bool logEvents;
 
@@ -53,6 +53,7 @@ public class MachineManager : MonoBehaviour
         {
             OnPlace.AddListener(() => Debug.Log(nameof(OnPlace)));
             OnRemove.AddListener(() => Debug.Log(nameof(OnRemove)));
+            OnInvalidRecipe.AddListener(() => Debug.Log(nameof(OnInvalidRecipe)));
             OnProcess.AddListener(() => Debug.Log(nameof(OnProcess)));
             OnProcessed.AddListener(() => Debug.Log(nameof(OnProcessed)));
         }
@@ -103,7 +104,11 @@ public class MachineManager : MonoBehaviour
         if (ingredientIndex == 0 || IsProcessing || HasProduct) return;
 
         var recipe = RecipeHolder.Singleton.GetRecipeFor(ingredients[..ingredientIndex], machineProcess);
-        if (recipe == null) return;
+        if (recipe == null)
+        {
+            OnInvalidRecipe.Invoke();
+            return;
+        }
 
         processingRoutine = StartCoroutine(ProcessingRoutine(recipe));
     }
