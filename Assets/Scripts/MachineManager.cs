@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
 public class MachineManager : MonoBehaviour
@@ -25,9 +26,16 @@ public class MachineManager : MonoBehaviour
 
     private void Start()
     {
+        Assert.IsNotNull(RecipeHolder.Singleton);
         Assert.IsNotNull(ProcessSpriteHolder.Singleton);
     }
 
+    private void OnMouseDown()
+    {
+        _ = TryRemoveIngredient();
+    }
+
+    #region Add/Remove Ingredient
     public bool TryPlaceIngredient(Ingredient ingredient)
     {
         if (ingredientRenderers.Length == ingredientIndex) return false;
@@ -38,6 +46,19 @@ public class MachineManager : MonoBehaviour
 
         return true;
     }
+
+    public Ingredient TryRemoveIngredient()
+    {
+        if (ingredientIndex == 0) return null;
+
+        ingredientIndex--;
+        var ingredient = ingredients[ingredientIndex];
+        ingredients[ingredientIndex] = null;
+        ingredientRenderers[ingredientIndex].sprite = null;
+
+        return ingredient;
+    }
+    #endregion
 
     #region Debug
     private void OnValidate()
