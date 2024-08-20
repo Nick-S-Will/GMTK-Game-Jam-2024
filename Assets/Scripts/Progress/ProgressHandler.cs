@@ -74,6 +74,12 @@ public class ProgressHandler : MonoBehaviour
         OnWaveStart.Invoke();
     }
 
+
+    /*
+        Set up in Inspector for "Round Over Screen" and Behavior:
+            1. Under OnWaveEnd() event, Attach GameOverScreen Game Object (GO) with method GameObject.SetActive, set to true
+            2. Under OnWaveEnd() event, Attach Progress GO with method GameObject.SetActive, set to false --pauses gameplay
+    */
     private void CheckForWaveEnd()
     {
         if (elapsedWaveTime < waveDuration) return;
