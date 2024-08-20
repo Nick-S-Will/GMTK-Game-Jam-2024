@@ -98,9 +98,8 @@ public class ProgressHandler : MonoBehaviour
     }
 
     #region ScoreHandler Access Methods
+    //adds time, as per ScoreHandler's AddTimeBonus() call
     public void AddTime(float addBonus){
-        Debug.Log("AddTime called");
-
         if(addBonus > 0){
             waveDuration += addBonus;
         }
