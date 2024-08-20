@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class MachineManager : MonoBehaviour, IDropPoint<Ingredient>
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject loadingBar;
+    [SerializeField] private Transform loadingScale;
     [SerializeField] private Process machineProcess;
     [SerializeField] private SpriteRenderer[] ingredientRenderers;
     [SerializeField] private IngredientDragDrop productDisplay;
@@ -118,16 +120,30 @@ public class MachineManager : MonoBehaviour, IDropPoint<Ingredient>
     {
         OnProcess.Invoke();
 
+        loadingBar.SetActive(true);
+
+        var totalTimeElapsed = 0f;
+        var intervalStartTime = Time.time;
         var processingInterval = processingTime / recipe.ingredients.Length;
         while (ingredientIndex > 0)
         {
-            ingredientIndex--;
-            CurrentIngredient = null;
+            var percent = Mathf.Clamp01(totalTimeElapsed / processingTime);
+            loadingScale.localScale = new Vector3(percent, 1f, 1f);
+            totalTimeElapsed += Time.deltaTime;
 
-            yield return new WaitForSeconds(processingInterval);
+            if (Time.time - intervalStartTime >= processingInterval)
+            {
+                ingredientIndex--;
+                CurrentIngredient = null;
+
+                intervalStartTime = Time.time;
+            }
+
+            yield return null;
         }
 
         Product = recipe.product;
+        loadingBar.SetActive(false);
 
         processingRoutine = null;
 
@@ -141,6 +157,8 @@ public class MachineManager : MonoBehaviour, IDropPoint<Ingredient>
         if (spriteRenderer)
         {
             var processSprites = FindObjectOfType<ProcessSpriteHolder>();
+            if (processSprites == null) Debug.LogWarning($"No {nameof(ProcessSpriteHolder)}");
+
             spriteRenderer.sprite = processSprites ? processSprites[machineProcess] : null;
         }
     }

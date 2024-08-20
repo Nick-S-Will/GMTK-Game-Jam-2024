@@ -12,6 +12,8 @@ namespace Displayable
             displayObject = newObject;
             display1.SetObject(newObject);
             display2.SetObject(newObject);
+
+            UpdateGraphics();
         }
 
         public override void UpdateGraphics()
