@@ -5,7 +5,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider2D))]
 public class PetBehaviour : MonoBehaviour, IDropPoint<Food>
 {
-    [SerializeField] private Pet pet;
     [SerializeField] private SpriteRenderer petRenderer, foodRenderer;
     [SerializeField] private Sprite fullSprite;
     [Header("Feeding Settings")]
@@ -14,12 +13,22 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>
     public UnityEvent OnShowFood;
     public UnityEvent OnFeed, OnFull, OnClick;
     [Header("Debug")]
+    [SerializeField] private Pet pet;
     [SerializeField] private bool logEvents;
 
     private float timeSinceFeeding;
     private int foodIndex;
 
-    public Pet Pet => pet;
+    public Pet Pet 
+    {
+        get => pet;
+        set
+        {
+            pet = value;
+            petRenderer.sprite = pet.sprite;
+            petRenderer.color = pet.tint;
+        }
+    }
     public Food[] Foods => pet.foods;
     public bool CanEat => foodIndex < Foods.Length && timeSinceFeeding >= feedingInterval;
     public bool IsShowingFood => foodRenderer.gameObject.activeSelf;

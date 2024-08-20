@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8185891944773938003, guid: 59e0355dc2233b24ea4e26bbd586c393, type: 3}
       propertyPath: m_Name
-      value: Boiler Variant
+      value: Boiler
       objectReference: {fileID: 0}
     - target: {fileID: 8534423856825233293, guid: 59e0355dc2233b24ea4e26bbd586c393, type: 3}
       propertyPath: m_LocalPosition.x
