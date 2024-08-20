@@ -35,8 +35,6 @@ public class ProgressHandler : MonoBehaviour
             OnWaveStart.AddListener(() => Debug.Log(nameof(OnWaveStart)));
             OnWaveEnd.AddListener(() => Debug.Log(nameof(OnWaveEnd)));
         }
-
-        for (int i = 0; i < startOrderCount; i++) orderList.GenerateOrder(OrderTimeLimit);
     }
 
     private void OnEnable()
@@ -51,6 +49,8 @@ public class ProgressHandler : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < startOrderCount; i++) orderList.GenerateOrder(OrderTimeLimit);
+
         OnWaveStart.Invoke();
     }
 
