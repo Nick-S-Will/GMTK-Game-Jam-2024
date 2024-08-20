@@ -157,6 +157,8 @@ public class MachineManager : MonoBehaviour, IDropPoint<Ingredient>
         if (spriteRenderer)
         {
             var processSprites = FindObjectOfType<ProcessSpriteHolder>();
+            if (processSprites == null) Debug.LogWarning($"No {nameof(ProcessSpriteHolder)}");
+
             spriteRenderer.sprite = processSprites ? processSprites[machineProcess] : null;
         }
     }

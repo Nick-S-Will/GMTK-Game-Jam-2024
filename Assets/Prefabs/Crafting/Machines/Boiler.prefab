@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 124063018459355735, guid: 59e0355dc2233b24ea4e26bbd586c393, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 124063018459355735, guid: 59e0355dc2233b24ea4e26bbd586c393, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791112676872345744, guid: 59e0355dc2233b24ea4e26bbd586c393, type: 3}
+      propertyPath: machineProcess
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8185891944773938003, guid: 59e0355dc2233b24ea4e26bbd586c393, type: 3}
       propertyPath: m_Name
       value: Boiler
