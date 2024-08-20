@@ -66,15 +66,19 @@ namespace Displayable
             foreach (var display in displayInstances) display.UpdateGraphics();
         }
 
-        protected virtual void DestroyDisplaysWithNullObjects()
+        protected void DestroyDisplaysWithNullObjects() => DestroyDisplays(display => display.DisplayObject.Equals(null));
+
+        protected void DestroyDisplays() => DestroyDisplays(display => true);
+
+        protected void DestroyDisplays(Predicate<DisplayType> predicate)
         {
-            foreach (var display in displayInstances)
+            foreach (var display in Displays)
             {
-                if (display.DisplayObject.Equals(null)) DestroyDisplay(display);
+                if (predicate(display)) DestroyDisplay(display);
             }
         }
 
-        public virtual void DestroyDisplay(DisplayType display)
+        protected virtual void DestroyDisplay(DisplayType display)
         {
             if (!displayInstances.Contains(display))
             {
@@ -84,12 +88,6 @@ namespace Displayable
 
             displayInstances.Remove(display);
             ContextDestroy(display.gameObject);
-        }
-
-        public virtual void DestroyDisplays()
-        {
-            foreach (var display in Displays) ContextDestroy(display.gameObject);
-            displayInstances.Clear();
         }
     }
 }
