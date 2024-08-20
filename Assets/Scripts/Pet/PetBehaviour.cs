@@ -9,6 +9,9 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>, IDragDroppable<Pet>
     [SerializeField] private Sprite fullSprite;
     [Header("Feeding Settings")]
     [SerializeField][Min(0f)] private float feedingInterval = 10f;
+    [Header("Stretch Settings")]
+    [SerializeField][Min(1e-5f)] private float stretchFrequency = 1f;
+    [SerializeField] Vector3 minStretch = Vector3.one, maxStretch = Vector3.one;
     [Header("Events")]
     public UnityEvent OnShowFood;
     public UnityEvent OnFeed, OnFull, OnGrab, OnDrop;
@@ -17,6 +20,7 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>, IDragDroppable<Pet>
     [SerializeField] private bool logEvents;
 
     private new Collider2D collider;
+    private Vector3 startScale;
     private float timeSinceFeeding;
     private int foodIndex;
 
@@ -53,6 +57,7 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>, IDragDroppable<Pet>
 
         foodRenderer.gameObject.SetActive(false);
         collider = GetComponent<Collider2D>();
+        startScale = petRenderer.transform.localScale;
     }
 
     private void Update()
@@ -60,6 +65,7 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>, IDragDroppable<Pet>
         timeSinceFeeding += Time.deltaTime;
 
         TryShowNextFood();
+        UpdateStretch();
     }
 
     #region Mouse Messages
@@ -86,26 +92,6 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>, IDragDroppable<Pet>
         if (Pet == null) return;
 
         Drag(IDragDroppable<Ingredient>.MouseWorldPosition);
-    }
-    #endregion
-
-    #region Food Display
-    private void TryShowNextFood()
-    {
-        if (timeSinceFeeding < feedingInterval || IsShowingFood) return;
-
-        SetFoodVisibility(true);
-
-        if (IsFull) OnFull.Invoke();
-        else OnShowFood.Invoke();
-    }
-
-    private void HideFood() => SetFoodVisibility(false);
-    
-    private void SetFoodVisibility(bool visible)
-    {
-        foodRenderer.sprite = visible ? (IsFull ? fullSprite : Foods[foodIndex].bubbleSprite) : null;
-        foodRenderer.gameObject.SetActive(visible);
     }
     #endregion
 
@@ -142,6 +128,35 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>, IDragDroppable<Pet>
     {
         if (IsShowingFood && IsFull && (this as IDragDroppable<Pet>).TryPlaceAtDropPoint(position) is PetSeller) Destroy(gameObject);
         else OnDrop.Invoke();
+    }
+    #endregion
+
+    #region Food Display
+    private void TryShowNextFood()
+    {
+        if (timeSinceFeeding < feedingInterval || IsShowingFood) return;
+
+        SetFoodVisibility(true);
+
+        if (IsFull) OnFull.Invoke();
+        else OnShowFood.Invoke();
+    }
+
+    private void HideFood() => SetFoodVisibility(false);
+    
+    private void SetFoodVisibility(bool visible)
+    {
+        foodRenderer.sprite = visible ? (IsFull ? fullSprite : Foods[foodIndex].bubbleSprite) : null;
+        foodRenderer.gameObject.SetActive(visible);
+    }
+    #endregion
+
+    #region Stretch
+    private void UpdateStretch()
+    {
+        var interpolate = Mathf.PingPong(stretchFrequency * Time.time, 1f);
+        var scale = Vector3.Lerp(minStretch, maxStretch, interpolate);
+        petRenderer.transform.localScale = Vector3.Scale(scale, startScale);
     }
     #endregion
 

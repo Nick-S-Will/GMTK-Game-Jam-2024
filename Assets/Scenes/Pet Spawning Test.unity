@@ -691,6 +691,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1791882127}
     m_Modifications:
     - target: {fileID: 1726946260958603298, guid: 216c472a8e6e6464bb29ed57f5cc9305, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726946260958603298, guid: 216c472a8e6e6464bb29ed57f5cc9305, type: 3}
       propertyPath: progressHandler
       value: 
       objectReference: {fileID: 1063128186}
