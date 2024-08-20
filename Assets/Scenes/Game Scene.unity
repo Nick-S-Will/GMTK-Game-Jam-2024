@@ -567,6 +567,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 04d2e973ce53c2c489602796c65324cc, type: 3}
+    - target: {fileID: 6154292756170799613, guid: 30c3f4db756af9f4a9770a39563af5b9, type: 3}
+      propertyPath: m_fontStyle
+      value: 33
+      objectReference: {fileID: 0}
     - target: {fileID: 6380563725959466959, guid: 30c3f4db756af9f4a9770a39563af5b9, type: 3}
       propertyPath: roomCameras.Array.data[0]
       value: 
@@ -575,6 +579,10 @@ PrefabInstance:
       propertyPath: roomCameras.Array.data[1]
       value: 
       objectReference: {fileID: 1341467131}
+    - target: {fileID: 6443854638415278521, guid: 30c3f4db756af9f4a9770a39563af5b9, type: 3}
+      propertyPath: m_fontStyle
+      value: 33
+      objectReference: {fileID: 0}
     - target: {fileID: 6730246307316389606, guid: 30c3f4db756af9f4a9770a39563af5b9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -645,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7564951328584066161, guid: 30c3f4db756af9f4a9770a39563af5b9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 8
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7564951328584066161, guid: 30c3f4db756af9f4a9770a39563af5b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -995,6 +1003,10 @@ PrefabInstance:
     - target: {fileID: 8948220644126258616, guid: b4c733e839bdb440c94c0431d687b666, type: 3}
       propertyPath: m_Name
       value: GameOverScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948220644126258616, guid: b4c733e839bdb440c94c0431d687b666, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1541,6 +1553,10 @@ PrefabInstance:
     - target: {fileID: 8899036964395365677, guid: 306f427428a3f2048a7816487c4505f8, type: 3}
       propertyPath: m_Name
       value: Holders
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899036964395365677, guid: 306f427428a3f2048a7816487c4505f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2284,6 +2300,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Score Handler
       objectReference: {fileID: 0}
+    - target: {fileID: 8515544027439869817, guid: 7b5f498c56b6c49bebe1f6873b9d5a5d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2632,13 +2652,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1336421755525944976, guid: 2a0306d5dacbdb44f995c44d1b17454c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1366103059682448194, guid: 2a0306d5dacbdb44f995c44d1b17454c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3642893712803155170, guid: 2a0306d5dacbdb44f995c44d1b17454c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4235499073902287683, guid: 2a0306d5dacbdb44f995c44d1b17454c, type: 3}
       propertyPath: m_Name
       value: Room Cameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235499073902287683, guid: 2a0306d5dacbdb44f995c44d1b17454c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851307480259974559, guid: 2a0306d5dacbdb44f995c44d1b17454c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6429009019562954199, guid: 2a0306d5dacbdb44f995c44d1b17454c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2762,6 +2798,10 @@ PrefabInstance:
     - target: {fileID: 5399804356086747781, guid: ecdbef19eead675419116d4fb39c4d9d, type: 3}
       propertyPath: m_Name
       value: Progress Handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399804356086747781, guid: ecdbef19eead675419116d4fb39c4d9d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7981941261301864046, guid: ecdbef19eead675419116d4fb39c4d9d, type: 3}
       propertyPath: m_Enabled
@@ -3338,7 +3378,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4177083, y: 1.2962962, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2044929739}
@@ -3384,12 +3424,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 3a1eb87604f65a442a6cfc8e2d857f65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51549706bce6ff847911a5059b73a420, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
-  m_Size: {x: 24.88889, y: 14}
+  m_DrawMode: 0
+  m_Size: {x: 27.22, y: 14}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
