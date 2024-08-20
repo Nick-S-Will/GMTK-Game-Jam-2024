@@ -18,7 +18,9 @@ public class IngredientDisplay : Display<Ingredient>
     public override void UpdateGraphics()
     {
         var isProcessed = ingredientRecipe != null;
+        // Zero index assumes that processed ingredients will only have 1 ingredient
         ingredientDisplay.sprite = isProcessed ? ingredientRecipe.ingredients[0].sprite : displayObject.sprite;
+        ingredientDisplay.color = isProcessed ? ingredientRecipe.ingredients[0].tint : displayObject.tint;
 
         processDisplay.sprite = isProcessed ? ProcessSpriteHolder.Singleton[ingredientRecipe.process] : null;
         processDisplay.enabled = isProcessed;
