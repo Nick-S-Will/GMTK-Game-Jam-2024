@@ -1100,8 +1100,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1449214764882212708, guid: 4e3704baf794c7e4b95e04d87e1e1026, type: 3}
+      propertyPath: OnProcessed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449214764882212708, guid: 4e3704baf794c7e4b95e04d87e1e1026, type: 3}
+      propertyPath: OnProcessed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1257721174}
+    - target: {fileID: 1449214764882212708, guid: 4e3704baf794c7e4b95e04d87e1e1026, type: 3}
       propertyPath: OnProcessed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449214764882212708, guid: 4e3704baf794c7e4b95e04d87e1e1026, type: 3}
+      propertyPath: OnProcessed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449214764882212708, guid: 4e3704baf794c7e4b95e04d87e1e1026, type: 3}
+      propertyPath: OnProcessed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449214764882212708, guid: 4e3704baf794c7e4b95e04d87e1e1026, type: 3}
+      propertyPath: OnProcessed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2222044624237604021, guid: 4e3704baf794c7e4b95e04d87e1e1026, type: 3}
       propertyPath: m_Name
@@ -3022,6 +3042,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249220021}
   m_CullTransparentMesh: 1
+--- !u!82 &1257721174 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7711606065692085103, guid: 4e3704baf794c7e4b95e04d87e1e1026, type: 3}
+  m_PrefabInstance: {fileID: 508055957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1341467130
 PrefabInstance:
   m_ObjectHideFlags: 0
