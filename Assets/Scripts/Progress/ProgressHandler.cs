@@ -85,8 +85,6 @@ public class ProgressHandler : MonoBehaviour
         if (cancelRemainingOrdersOnWaveEnd) orderList.CancelOrders();
         orderList.PauseOrders();
         OnWaveEnd.Invoke();
-
-        Debug.Log(waveDuration); //reminder: need for game over screen later, also modify via score handler
     }
 
     private void CheckForNewOrder()

@@ -21,7 +21,6 @@ public class GameOverUIScript : MonoBehaviour
 
     [Tooltip("Any side messages like 'new ingredients unlocked' or 'thanks for playing'")] [SerializeField] private TMP_Text endText;
 
-
     //takes the basic text for stats
     private string quotaPrefix, scorePrefix,totalTimePrefix;
     private void Awake()
@@ -44,16 +43,12 @@ public class GameOverUIScript : MonoBehaviour
     }
 
     public void OnEnable(){
-        //ref: waveText.text = wavePrefix + progressHandler.Wave;
-        Debug.Log("Oh hey!");
-
         quotaText.text = quotaPrefix + scoreHandler.quota;
         scoreText.text = scorePrefix + scoreHandler.score;
         totalTimeText.text = totalTimePrefix + progressHandler.StringWaveDuration;
 
 
-
-        //todo: fix the showing up logic
+        //custom end message conditions
         if(scoreHandler.losingViaTime){            
             endText.text = (scoreHandler.arcadeGameMode) ? "Thank you for playing!" : "New Ingredients Unlocked!";
         }
