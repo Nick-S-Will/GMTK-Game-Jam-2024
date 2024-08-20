@@ -323,8 +323,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressHandler: {fileID: 0}
+  scoreHandler: {fileID: 0}
   waveText: {fileID: 1031517572202650302}
   timeText: {fileID: 2859350001481441370}
+  scoreText: {fileID: 7283614350855507661}
 --- !u!222 &7836656917196261143
 CanvasRenderer:
   m_ObjectHideFlags: 0

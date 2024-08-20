@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score:'
+  m_text: 'Score: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -303,8 +303,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: -9}
-  m_SizeDelta: {x: 347.821, y: 148.91}
+  m_AnchoredPosition: {x: -37.279, y: 33.369}
+  m_SizeDelta: {x: 553.884, y: 242.129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6083396778128741066
 GameObject:
@@ -340,7 +340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.6, y: -37.999985}
+  m_AnchoredPosition: {x: 0.000024438, y: -63}
   m_SizeDelta: {x: 347.821, y: 148.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9041177939272594121
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Total Time:'
+  m_text: 'Total Time: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -474,7 +474,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.4470097, y: -165.142}
+  m_AnchoredPosition: {x: 0.0000016689, y: -165.14}
   m_SizeDelta: {x: 640.864, y: 154.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4889094429023550873
@@ -608,7 +608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.7, y: 49}
+  m_AnchoredPosition: {x: -0.10004, y: 74.455}
   m_SizeDelta: {x: 347.821, y: 148.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3159411290570341415
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quota:'
+  m_text: 'Quota: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 0.78039217}
+  m_Color: {r: 0.9716981, g: 0.7634553, b: 0.75627446, a: 0.94509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -800,6 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 8948220644126258616}
+  progressHandler: {fileID: 0}
+  scoreHandler: {fileID: 0}
   titleText: {fileID: 420707563382308639}
   quotaText: {fileID: 3663785373332684634}
   scoreText: {fileID: 8755818063694488968}
