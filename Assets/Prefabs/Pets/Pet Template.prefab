@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petRenderer: {fileID: 8277439315441836172}
   foodRenderer: {fileID: 857776779527504228}
-  fullSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  fullSprite: {fileID: 21300000, guid: f266dbb17732410498bc61dda7645649, type: 3}
   feedingInterval: 5
   OnShowFood:
     m_PersistentCalls:
