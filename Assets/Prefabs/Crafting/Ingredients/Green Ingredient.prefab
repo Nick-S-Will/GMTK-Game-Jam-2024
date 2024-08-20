@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7809179723696528799
+--- !u!1001 &8300388076444473256
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,20 +9,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3636843315779823901, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3636843315779823901, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3636843315779823901, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.71
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3636843315779823901, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3636843315779823901, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59,22 +51,34 @@ PrefabInstance:
     - target: {fileID: 4023499083080473262, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: ingredient
       value: 
+      objectReference: {fileID: 11400000, guid: e218bb3110d2ff6439fc71adab580942, type: 2}
+    - target: {fileID: 4169930987409000087, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4
       objectReference: {fileID: 0}
-    - target: {fileID: 4023499083080473262, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
-      propertyPath: singleIngredient
-      value: 1
+    - target: {fileID: 4169930987409000087, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_Size.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: c1602205182110a4fbe841156b69bcd0, type: 3}
     - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8163440744743185449, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_Name
-      value: Product Variant
+      value: Green Ingredient Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -24,6 +24,8 @@ public class ProgressHandler : MonoBehaviour
     public float RemainingWaveTime => Mathf.Clamp(waveDuration - elapsedWaveTime, 0f, waveDuration);
     public int Wave => clearedWaveCount + 1;
 
+    public string StringWaveDuration => waveDuration.ToString();
+
     private void Awake()
     {
         Assert.IsNotNull(orderList);
@@ -33,8 +35,6 @@ public class ProgressHandler : MonoBehaviour
             OnWaveStart.AddListener(() => Debug.Log(nameof(OnWaveStart)));
             OnWaveEnd.AddListener(() => Debug.Log(nameof(OnWaveEnd)));
         }
-
-        for (int i = 0; i < startOrderCount; i++) orderList.GenerateOrder(OrderTimeLimit);
     }
 
     private void OnEnable()
@@ -49,6 +49,8 @@ public class ProgressHandler : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < startOrderCount; i++) orderList.GenerateOrder(OrderTimeLimit);
+
         OnWaveStart.Invoke();
     }
 
@@ -72,6 +74,12 @@ public class ProgressHandler : MonoBehaviour
         OnWaveStart.Invoke();
     }
 
+
+    /*
+        Set up in Inspector for "Round Over Screen" and Behavior:
+            1. Under OnWaveEnd() event, Attach GameOverScreen Game Object (GO) with method GameObject.SetActive, set to true
+            2. Under OnWaveEnd() event, Attach Progress GO with method GameObject.SetActive, set to false --pauses gameplay
+    */
     private void CheckForWaveEnd()
     {
         if (elapsedWaveTime < waveDuration) return;
@@ -92,4 +100,14 @@ public class ProgressHandler : MonoBehaviour
         orderList.GenerateOrder(OrderTimeLimit);
         elapsedOrderTime = 0f;
     }
+
+    #region ScoreHandler Access Methods
+    //adds time, as per ScoreHandler's AddTimeBonus() call
+    public void AddTime(float addBonus){
+        if(addBonus > 0){
+            waveDuration += addBonus;
+        }
+    }
+    #endregion
+
 }

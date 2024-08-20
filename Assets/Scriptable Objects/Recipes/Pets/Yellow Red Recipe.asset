@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56f840aaa8f0b547ac7a06bb5ce1990, type: 3}
+  m_Name: Yellow Red Recipe
+  m_EditorClassIdentifier: 
+  ingredients:
+  - {fileID: 11400000, guid: e0b240240fc55b34ab715aea51da5533, type: 2}
+  - {fileID: 11400000, guid: 17afee3c243b2c842817ce5db6059b6e, type: 2}
+  process: 2
+  product: {fileID: 11400000, guid: 3a1c50b486a31ae41a14b3bc16383670, type: 2}

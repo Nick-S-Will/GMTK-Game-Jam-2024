@@ -24,6 +24,7 @@ public class Order : MultiDisplay<Pet, PetIngredientDisplay, PetFoodDisplay>
     public override void UpdateGraphics()
     {
         productDisplay.sprite = displayObject.sprite;
+        productDisplay.color = displayObject.tint;
 
         base.UpdateGraphics();
     }

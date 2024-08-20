@@ -46,8 +46,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipes:
-  - {fileID: 11400000, guid: f08db3609db9a6a4e969fbb9586373a2, type: 2}
-  - {fileID: 11400000, guid: c3126954afe38c84580e569cc2c732b4, type: 2}
+  - {fileID: 11400000, guid: 897deb72531f09947bdc7e56df9db030, type: 2}
+  - {fileID: 11400000, guid: eda1cb168dbc5b8489bf7b1bd71d5fd2, type: 2}
+  - {fileID: 11400000, guid: 6101248c38d45e449bfd311c85b10e6a, type: 2}
+  - {fileID: 11400000, guid: 3600d97b25303f6499437410878f7d08, type: 2}
+  - {fileID: 11400000, guid: b4129f23a723b7044b125ec512c7c3fb, type: 2}
+  - {fileID: 11400000, guid: 2a28423b49ee5e74d8bd72756648a4b5, type: 2}
+  - {fileID: 11400000, guid: b94ff963521671e489f62dad522956bc, type: 2}
+  - {fileID: 11400000, guid: 81c0eb40dc6355444880b27392f8ce9e, type: 2}
+  - {fileID: 11400000, guid: eeaf46ee6cf1eb74b947e8d2cbea2922, type: 2}
+  - {fileID: 11400000, guid: bcd627e64e3da2b42a8b67a56d2a0573, type: 2}
+  - {fileID: 11400000, guid: a1900f0b8d611874eac50343b2af2da4, type: 2}
+  - {fileID: 11400000, guid: 7be20d5fe36e4c54896c378e4b06f5f7, type: 2}
 --- !u!114 &9043751287425545294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +74,6 @@ MonoBehaviour:
   - name: Beaker
     sprite: {fileID: 21300000, guid: e751ac791e6f9ad42a42f6cd9879738a, type: 3}
   - name: Boil
-    sprite: {fileID: 21300000, guid: 7b553ba7133dfd8439f6d1d8ee3b292d, type: 3}
+    sprite: {fileID: 21300000, guid: a3375adc658af1442bf7c7e861dbbee5, type: 3}
   - name: Creator
-    sprite: {fileID: 21300000, guid: 0abb9904521c94841bdfa75312db7326, type: 3}
+    sprite: {fileID: 21300000, guid: b2846dc6a2fcab4478fb00cf9a5a4d84, type: 3}
