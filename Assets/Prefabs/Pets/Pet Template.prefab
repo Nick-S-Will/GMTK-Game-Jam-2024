@@ -224,7 +224,19 @@ MonoBehaviour:
   maxStretch: {x: 0.95, y: 1.05, z: 1}
   OnShowFood:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 317902420295258058, guid: 84231684b9d954e8f814f23f5bc1773a, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnFeed:
     m_PersistentCalls:
       m_Calls: []
