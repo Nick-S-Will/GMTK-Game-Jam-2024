@@ -11,6 +11,7 @@ public class OrderList : DisplayMaker<Order, Pet>
     [Header("Events")]
     public UnityEvent OnNewOrder;
     public UnityEvent OnOrderExpire;
+    public UnityEvent<Pet> OnOrderCompleted;
 
     protected override Comparison<Order> DisplayComparison => new((order1, order2) => (int)(order1.RemainingTime - order2.RemainingTime));
 
@@ -46,19 +47,7 @@ public class OrderList : DisplayMaker<Order, Pet>
     }
     #endregion
 
-    #region Pause
-    public void PauseOrders() => SetOrdersPaused(true);
-
-    public void ResumeOrders() => SetOrdersPaused(false);
-
-    public void SetOrdersPaused(bool paused)
-    {
-        displayInstances.RemoveAll(order => order == null);
-        foreach (var order in displayInstances) order.enabled = !paused;
-    }
-    #endregion
-
-    #region Cancel Orders
+    #region End Orders
     private void CancelExpiredOrders() => CancelOrders(order => order.RemainingTime == 0f);
 
     public void CancelOrders() => CancelOrders(order => true);
@@ -72,6 +61,27 @@ public class OrderList : DisplayMaker<Order, Pet>
             DestroyDisplay(order);
             OnOrderExpire.Invoke();
         }
+    }
+
+    public bool TryCompleteOrder(Pet pet)
+    {
+        var order = displayInstances.Find(display => display.DisplayObject == pet);
+        DestroyDisplay(order);
+        if (order) OnOrderCompleted.Invoke(pet);
+        
+        return order;
+    }
+    #endregion
+
+    #region Pause
+    public void PauseOrders() => SetOrdersPaused(true);
+
+    public void ResumeOrders() => SetOrdersPaused(false);
+
+    public void SetOrdersPaused(bool paused)
+    {
+        displayInstances.RemoveAll(order => order == null);
+        foreach (var order in displayInstances) order.enabled = !paused;
     }
     #endregion
 }

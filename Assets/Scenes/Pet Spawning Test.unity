@@ -1720,6 +1720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pet Seller
       objectReference: {fileID: 0}
+    - target: {fileID: 4637251634282932033, guid: 381ebe1bf50b9794893fc7f5206a534d, type: 3}
+      propertyPath: orderList
+      value: 
+      objectReference: {fileID: 1918734718}
     - target: {fileID: 7989767216954907469, guid: 381ebe1bf50b9794893fc7f5206a534d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.5
