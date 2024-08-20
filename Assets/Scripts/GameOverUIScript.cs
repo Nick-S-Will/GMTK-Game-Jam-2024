@@ -54,19 +54,12 @@ public class GameOverUIScript : MonoBehaviour
 
 
         //todo: fix the showing up logic
-        if(scoreHandler.losingViaTime){
-            titleText.text = "Whew... What a Month!";
-            
+        if(scoreHandler.losingViaTime){            
             endText.text = (scoreHandler.arcadeGameMode) ? "Thank you for playing!" : "New Ingredients Unlocked!";
         }
-
         else{
-            titleText.text = ("Out of Business?!");
-            //quota - score
-            endText.text = ("Shucks... Quota missed by " +(scoreHandler.score - scoreHandler.quota));
-
+            endText.text = ("Shucks... Missed quota by "+ (scoreHandler.quota - scoreHandler.score));
         }
-        
     
     }
 
