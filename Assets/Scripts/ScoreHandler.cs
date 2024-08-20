@@ -15,7 +15,7 @@ public class ScoreHandler : MonoBehaviour
     private int lastBonusScore;
 
     [Tooltip("How much score must exceed for time bonus")][SerializeField] private int exceedingFactor = 5;
-    [Tooltip("Additional Time added")] [SerializeField] private float timeBonus = 60f;
+    [Tooltip("Additional Time added")] [SerializeField] private float timeBonus = 120f;
 
     //booleans Used for failure conditions
     public bool losingViaTime {get; private set;}
@@ -54,9 +54,12 @@ public class ScoreHandler : MonoBehaviour
              //if the score has already exceeded quota and the score has exceeded the last time by the factor
             if(scoreExceededQuota && (lastBonusScore + exceedingFactor == score)){AddTimeBonus();}
         }
-
-//go over affects of arcade game mode
     }
+
+
+    /* To add ScoreHandler system to game: 
+        Connect OnAdoptedInvoked to OnSell(Pet) event in Pet Seller prefab (under Play Area GO) 
+    */
 
     #region Adopted Event Handlers
     //anything can call on adopted event; first does score handler specific then inspector
@@ -73,6 +76,8 @@ public class ScoreHandler : MonoBehaviour
     }
     #endregion
 
+
+    //anything can call on quota reached event; but it deals with score handler tasks first before inspector
     #region Quota Event Handlers
     public void OnQuotaReachedInvoked(){
         OnQuotaReachedCalled();

@@ -48,7 +48,7 @@ MonoBehaviour:
   quota: 1
   score: 0
   exceedingFactor: 5
-  timeBonus: 60
+  timeBonus: 120
   OnQuotaReached:
     m_PersistentCalls:
       m_Calls: []
