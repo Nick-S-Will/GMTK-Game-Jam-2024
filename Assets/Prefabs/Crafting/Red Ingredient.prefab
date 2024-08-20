@@ -52,9 +52,25 @@ PrefabInstance:
       propertyPath: ingredient
       value: 
       objectReference: {fileID: 11400000, guid: fd7c593cc0a015e4f9f3ad51fdf3a974, type: 2}
+    - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_Size.x
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_Size.y
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f013d1935402024a98a59d2bb2e40a4, type: 3}
+    - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8163440744743185449, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_Name
-      value: Red Ingredient Variant
+      value: Red Ingredient
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

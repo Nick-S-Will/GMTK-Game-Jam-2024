@@ -31,7 +31,7 @@ public class IngredientDragDrop : MonoBehaviour, IDragDroppable<Ingredient>
         get => ingredient;
         set
         {
-            spriteRenderer.sprite = value ? value.sprite : null;
+            spriteRenderer.sprite = value ? (singleIngredient ? value.sprite : value.containerSprite) : null;
             spriteRenderer.color = value ? value.tint : Color.white;
             ingredient = value;
         }
@@ -104,7 +104,7 @@ public class IngredientDragDrop : MonoBehaviour, IDragDroppable<Ingredient>
     #region Debug
     private void OnValidate()
     {
-        if (spriteRenderer) spriteRenderer.sprite = Ingredient ? Ingredient.sprite : null;
+        if (spriteRenderer) spriteRenderer.sprite = Ingredient ? (singleIngredient ? Ingredient.sprite : Ingredient.containerSprite) : null;
     }
     #endregion
 }

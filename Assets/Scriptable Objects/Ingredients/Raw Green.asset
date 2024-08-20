@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caa59c2920ca38542b91c35ecbdda7b7, type: 3}
-  m_Name: Raw Blue
+  m_Name: Raw Green
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3846b253cd71b41418205ffc192c5876, type: 3}
-  containerSprite: {fileID: 21300000, guid: c95cd32184f057d4e9e9c317491481b6, type: 3}
+  sprite: {fileID: 21300000, guid: d68e348091492c94e9cb79b02f543282, type: 3}
+  containerSprite: {fileID: 21300000, guid: c1602205182110a4fbe841156b69bcd0, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}

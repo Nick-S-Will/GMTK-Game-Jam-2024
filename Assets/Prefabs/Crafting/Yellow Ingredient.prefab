@@ -58,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ea16c063f3a4caa40877f656642b6ee8, type: 2}
     - target: {fileID: 4169930987409000087, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 4169930987409000087, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_Size.x
@@ -78,11 +78,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 5d295714ff2ebff44b07736481771109, type: 3}
     - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150107210140690865, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8163440744743185449, guid: d9f69e42e617dd84a99f8e4cde497290, type: 3}
       propertyPath: m_Name
-      value: Yellow Ingredient Variant
+      value: Yellow Ingredient
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: faeaeda6873a86742a111abd0e2e35fb, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}
-  foods: []
+  foods:
+  - {fileID: 11400000, guid: ec152bf24ddd7e74cb352ce8d7e158c1, type: 2}
+  - {fileID: 11400000, guid: 92f0998d59cf54c44a389b9f918fb010, type: 2}

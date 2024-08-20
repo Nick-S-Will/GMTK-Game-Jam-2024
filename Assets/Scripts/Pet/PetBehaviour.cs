@@ -104,7 +104,7 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>, IDragDroppable<Pet>
     
     private void SetFoodVisibility(bool visible)
     {
-        foodRenderer.sprite = visible ? (IsFull ? fullSprite : Foods[foodIndex].sprite) : null;
+        foodRenderer.sprite = visible ? (IsFull ? fullSprite : Foods[foodIndex].bubbleSprite) : null;
         foodRenderer.gameObject.SetActive(visible);
     }
     #endregion
