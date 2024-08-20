@@ -24,6 +24,8 @@ public class ProgressHandler : MonoBehaviour
     public float RemainingWaveTime => Mathf.Clamp(waveDuration - elapsedWaveTime, 0f, waveDuration);
     public int Wave => clearedWaveCount + 1;
 
+    public string StringWaveDuration => waveDuration.ToString();
+
     private void Awake()
     {
         Assert.IsNotNull(orderList);
@@ -83,6 +85,8 @@ public class ProgressHandler : MonoBehaviour
         if (cancelRemainingOrdersOnWaveEnd) orderList.CancelOrders();
         orderList.PauseOrders();
         OnWaveEnd.Invoke();
+
+        Debug.Log(waveDuration); //reminder: need for game over screen later, also modify via score handler
     }
 
     private void CheckForNewOrder()
@@ -92,4 +96,14 @@ public class ProgressHandler : MonoBehaviour
         orderList.GenerateOrder(OrderTimeLimit);
         elapsedOrderTime = 0f;
     }
+
+    #region ScoreHandler Access Methods
+    //adds time, as per ScoreHandler's AddTimeBonus() call
+    public void AddTime(float addBonus){
+        if(addBonus > 0){
+            waveDuration += addBonus;
+        }
+    }
+    #endregion
+
 }
