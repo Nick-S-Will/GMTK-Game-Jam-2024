@@ -238,7 +238,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   pet: {fileID: 11400000, guid: 15fe3df3c549d7f45a963fb9829a29f6, type: 2}
-  logEvents: 1
+  logEvents: 0
 --- !u!61 &8124863267104499245
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public abstract class Holder<T> : MonoBehaviour where T : Holder<T>
     protected virtual void Awake()
     {
         if (Singleton == null) Singleton = this as T;
+        else Destroy(gameObject);
     }
 
     protected virtual void OnDestroy()
