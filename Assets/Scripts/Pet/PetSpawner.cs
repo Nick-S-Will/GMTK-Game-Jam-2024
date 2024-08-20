@@ -28,10 +28,17 @@ public class PetSpawner : MonoBehaviour, IDropPoint<Ingredient>
         }
     }
 
-    #region IDropPoint
-    public bool TryPlace(Ingredient obj)
+    private void Update()
     {
-        if (obj == null || obj is not Pet pet) return false;
+        pets.RemoveAll(pet => pet == null);
+
+        BindPositions();
+    }
+
+    #region IDropPoint
+    public bool TryPlace(Ingredient ingredient)
+    {
+        if (ingredient == null || ingredient is not Pet pet) return false;
 
         Spawn(pet);
 
@@ -61,6 +68,17 @@ public class PetSpawner : MonoBehaviour, IDropPoint<Ingredient>
         OnClear.Invoke();
     }
     #endregion
+
+    private void BindPositions()
+    {
+        foreach (var pet in pets)
+        {
+            var position = pet.transform.position;
+            if (spawnBounds.Contains(position)) continue;
+
+            pet.transform.position = spawnBounds.ClosestPoint(position);
+        }
+    }
 
     #region Debug
     private void OnDrawGizmosSelected()

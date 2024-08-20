@@ -67,12 +67,12 @@ public class FoodDragDrop : MonoBehaviour, IDragDroppable<Food>
 
     public void Drag(Vector2 position)
     {
-        spriteRenderer.transform.position = IDragDroppable<Food>.MouseWorldPosition;
+        spriteRenderer.transform.position = position;
     }
 
     public void Drop(Vector2 position)
     {
-        if ((this as IDragDroppable<Food>).TryPlaceAtDropPoint(position)) OnPlace.Invoke();
+        if ((this as IDragDroppable<Food>).TryPlaceAtDropPoint(position) != null) OnPlace.Invoke();
         else OnDrop.Invoke();
 
         spriteRenderer.transform.position = transform.position;

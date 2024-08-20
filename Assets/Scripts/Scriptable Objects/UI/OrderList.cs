@@ -3,6 +3,7 @@ using Displayable;
 using System;
 using System.Linq;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
 
 public class OrderList : DisplayMaker<Order, Pet>
 {
@@ -14,6 +15,13 @@ public class OrderList : DisplayMaker<Order, Pet>
     protected override Comparison<Order> DisplayComparison => new((order1, order2) => (int)(order1.RemainingTime - order2.RemainingTime));
 
     public Pet[] OrdererdPets => displayInstances.Select(order => order.DisplayObject).ToArray();
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Assert.AreNotEqual(0, pets.Length);
+    }
 
     private void Update()
     {

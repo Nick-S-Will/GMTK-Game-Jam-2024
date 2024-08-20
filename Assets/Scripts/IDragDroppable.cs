@@ -20,11 +20,11 @@ public interface IDragDroppable<T> where T : class
 
     public void Drop(Vector2 position);
 
-    public bool TryPlaceAtDropPoint(Vector2 position)
+    public IDropPoint<T> TryPlaceAtDropPoint(Vector2 position)
     {
         var hitInfo = Physics2D.Raycast(position, Vector2.zero);
         var dropPoint = hitInfo.collider ? hitInfo.collider.GetComponent<IDropPoint<T>>() : null;
 
-        return dropPoint != null && dropPoint.TryPlace(ObjectReference);
+        return dropPoint != null && dropPoint.TryPlace(ObjectReference) ? dropPoint : null;
     }
 }

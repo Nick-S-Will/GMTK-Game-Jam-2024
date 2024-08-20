@@ -90,7 +90,7 @@ public class IngredientDragDrop : MonoBehaviour, IDragDroppable<Ingredient>
 
     public void Drop(Vector2 position)
     {
-        if ((this as IDragDroppable<Ingredient>).TryPlaceAtDropPoint(position)) {
+        if ((this as IDragDroppable<Ingredient>).TryPlaceAtDropPoint(position) != null) {
             if (singleIngredient) Ingredient = null;
 
             OnPlace.Invoke();

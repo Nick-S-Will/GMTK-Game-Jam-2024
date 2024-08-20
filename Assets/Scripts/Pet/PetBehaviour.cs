@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
-public class PetBehaviour : MonoBehaviour, IDropPoint<Food>
+public class PetBehaviour : MonoBehaviour, IDropPoint<Food>, IDragDroppable<Pet>
 {
     [SerializeField] private SpriteRenderer petRenderer, foodRenderer;
     [SerializeField] private Sprite fullSprite;
@@ -11,11 +11,12 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>
     [SerializeField][Min(0f)] private float feedingInterval = 10f;
     [Header("Events")]
     public UnityEvent OnShowFood;
-    public UnityEvent OnFeed, OnFull, OnClick;
+    public UnityEvent OnFeed, OnFull, OnGrab, OnDrop;
     [Header("Debug")]
     [SerializeField] private Pet pet;
     [SerializeField] private bool logEvents;
 
+    private new Collider2D collider;
     private float timeSinceFeeding;
     private int foodIndex;
 
@@ -46,10 +47,12 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>
             OnShowFood.AddListener(() => Debug.Log(nameof(OnShowFood)));
             OnFeed.AddListener(() => Debug.Log(nameof(OnFeed)));
             OnFull.AddListener(() => Debug.Log(nameof(OnFull)));
-            OnClick.AddListener(() => Debug.Log(nameof(OnClick)));
+            OnGrab.AddListener(() => Debug.Log(nameof(OnGrab)));
+            OnDrop.AddListener(() => Debug.Log(nameof(OnDrop)));
         }
 
         foodRenderer.gameObject.SetActive(false);
+        collider = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -62,7 +65,27 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>
     #region Mouse Messages
     private void OnMouseDown()
     {
-        _ = TryRemove();
+        if (Pet == null) return;
+
+        OnGrab.Invoke();
+
+        collider.enabled = false;
+    }
+
+    private void OnMouseUp()
+    {
+        if (Pet == null) return;
+
+        Drop(IDragDroppable<Ingredient>.MouseWorldPosition);
+
+        collider.enabled = true;
+    }
+
+    private void OnMouseDrag()
+    {
+        if (Pet == null) return;
+
+        Drag(IDragDroppable<Ingredient>.MouseWorldPosition);
     }
     #endregion
 
@@ -100,11 +123,25 @@ public class PetBehaviour : MonoBehaviour, IDropPoint<Food>
         return true;
     }
 
-    public Food TryRemove()
-    {
-        OnClick.Invoke();
+    public Food TryRemove() => null;
+    #endregion
 
-        return null;
+    #region IDragDroppable
+    Pet IDragDroppable<Pet>.ObjectReference
+    {
+        get => Pet;
+        set => Pet = value;
+    }
+
+    public void Drag(Vector2 position)
+    {
+        transform.position = position;
+    }
+
+    public void Drop(Vector2 position)
+    {
+        if (IsShowingFood && IsFull && (this as IDragDroppable<Pet>).TryPlaceAtDropPoint(position) is PetSeller) Destroy(gameObject);
+        else OnDrop.Invoke();
     }
     #endregion
 
