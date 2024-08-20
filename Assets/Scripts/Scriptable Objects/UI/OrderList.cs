@@ -10,7 +10,6 @@ public class OrderList : DisplayMaker<Order, Pet>
     [SerializeField] private Pet[] pets;
     [Header("Events")]
     public UnityEvent OnNewOrder;
-    public UnityEvent OnOrderExpire;
     public UnityEvent<Pet> OnOrderCompleted;
 
     protected override Comparison<Order> DisplayComparison => new((order1, order2) => (int)(order1.RemainingTime - order2.RemainingTime));
@@ -52,22 +51,16 @@ public class OrderList : DisplayMaker<Order, Pet>
 
     public void CancelOrders() => CancelOrders(order => true);
 
-    public void CancelOrders(Predicate<Order> predicate)
-    {
-        foreach (var order in Displays)
-        {
-            if (!predicate(order)) continue;
-
-            DestroyDisplay(order);
-            OnOrderExpire.Invoke();
-        }
-    }
+    public void CancelOrders(Predicate<Order> predicate) => DestroyDisplays(order => predicate(order));
 
     public bool TryCompleteOrder(Pet pet)
     {
         var order = displayInstances.Find(display => display.DisplayObject == pet);
-        DestroyDisplay(order);
-        if (order) OnOrderCompleted.Invoke(pet);
+        if (order)
+        {
+            DestroyDisplay(order);
+            OnOrderCompleted.Invoke(pet);
+        }
         
         return order;
     }
